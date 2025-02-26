@@ -1,0 +1,29 @@
+
+    <canvas id="movie_show_count"></canvas>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const movie_show_count = document.getElementById('movie_show_count');
+  
+    new Chart(movie_show_count, {
+      type: 'doughnut',
+      data: {
+        labels: [{% for i in movie_show_count_label %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        datasets: [{
+          data: [{% for i in movie_show_count_data %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+          borderWidth: 1,
+          hoverOffset: 4
+        }]
+      },
+      options:{
+        plugins:{
+          title:{
+            display:true,
+            text:'Movie vs TV Show',
+          }
+        },
+      }
+    });
+  </script>

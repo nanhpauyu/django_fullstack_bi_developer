@@ -1,0 +1,58 @@
+<canvas id="yearly_add"></canvas>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const yearly_add = document.getElementById('yearly_add');
+  
+    new Chart(yearly_add, {
+      type: 'line',
+  data: {
+    labels:[{% for i in yearly_add_label %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+    datasets:[
+    {
+        label: 'Movie',
+        data: [{% for i in yearly_movie_sum %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        yAxisID : 'y'
+    },
+    {
+        label: 'TV Show',
+        data: [{% for i in yearly_tv_show_sum %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        yAxisID : 'y1'
+    }
+    ]
+  },
+  options: {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: 'Movie and TV show added onto Netflix'
+      }
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+
+        // grid line settings
+        grid: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
+        },
+      },
+    }
+  },
+    });
+  </script>
