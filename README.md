@@ -1,6 +1,6 @@
 # Django Full Stack BI Dashboard
 
-Analyze Netflix data from Kaggle [Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows) and create a dashboard for the application. [View Web Dashboard](https://djangofullstackbideveloper.vercel.app)
+Analyze Netflix data from Kaggle [Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows) and create a dashboard for the application. [View Web Dashboard](https://djangofullstackbideveloper.vercel.app) You can login with username 'root' and password '123' for testing.
 
 ## Features
 This responsive web application is built using the Django framework to analyze Netflix data from Kaggle. The process involves:
@@ -99,4 +99,4 @@ This responsive web application is built using the Django framework to analyze N
 
 ![TV Shows](/images/f.png)
 
-![Videos](/images/recording.mp4)
+![DEMO](/images/my_gif.gif)
