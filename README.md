@@ -1,12 +1,20 @@
-# Django full stack bi dashboard
+# Django Full Stack BI Dashboard
 
-Analyse data from Netflix from Kaggle [Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows) and create dashboard for the application. [Here is Web Dashboard](https://djangofullstackbideveloper.vercel.app)
+Analyze Netflix data from Kaggle [Dataset](https://www.kaggle.com/datasets/shivamb/netflix-shows) and create a dashboard for the application. [View Web Dashboard](https://djangofullstackbideveloper.vercel.app)
 
 ## Features
-This is a responsive web application built using the Django framwork. analyse data from the Netflix from Kaggle. first data cleaning such as cleaning. Please check data folder for Jupyter notebook which was used duing data cleaning. and then created data pipeline to Postgresql which is host on[aiven.io](https://aiven.io/)by using SQLAlchemy. Then created dashboard using Html, CSS, JAvascritp.
+This responsive web application is built using the Django framework to analyze Netflix data from Kaggle. The process involves:
+1. **Data Cleaning** – Initial data processing using Jupyter Notebook (available in the `data` folder).
+2. **Data Pipeline** – Storing cleaned data in PostgreSQL (hosted on [Aiven.io](https://aiven.io/)) using SQLAlchemy.
+3. **Dashboard Creation** – Implementing interactive visuals using HTML, CSS, JavaScript, and Chart.js.
 
 ## Technologies Used
-python , django html5 css tailwind javascript, Chartjs Postgresql SQLalchemy vercel github vscode, numpy pandas, mathplot seaborn
+- **Backend:** Python, Django, SQLAlchemy, PostgreSQL
+- **Frontend:** HTML5, CSS, Tailwind CSS, JavaScript, Chart.js
+- **Data Analysis:** NumPy, Pandas, Matplotlib, Seaborn
+- **Deployment & Development:** Vercel, GitHub, VS Code
+
+
 
 ## Installation and Usage
 
