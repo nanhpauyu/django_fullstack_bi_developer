@@ -39,7 +39,7 @@ def home(request):
     content['yearly_add_label'] = yearly_add_label
     content['yearly_movie_sum'] = yearly_movie_sum
     content['yearly_tv_show_sum'] = yearly_tv_show_sum
-    
+
     # Top Genres
     # genres = df_result['listed_in'].str.split(', ').explode()
     # top_genres = genres.value_counts().head(10)
@@ -53,14 +53,82 @@ def home(request):
 
 @login_required
 def movies(request):
+    content = {}
+    content['title'] = 'Movies'
     query = "SELECT * FROM public.my_data where type='Movie';"
     df_result = pd.read_sql(query, engine)
-    return HttpResponse('Movies')
+    # by year
+    movie_groupby_year = df_result.groupby('year').size()
+    yearly_add_label = movie_groupby_year.index.to_list()
+    yearly_movie_sum = movie_groupby_year.values
+    content['yearly_label'] = yearly_add_label
+    content['yearly_data'] = yearly_movie_sum
+    # by countries
+    countries = df_result[df_result['country'] !=
+                          'Unknown']['country'].str.split(', ').explode()
+    top_countries = countries.value_counts().head(10)
+    content['countries_label'] = top_countries.index.to_list()
+    content['countries_data'] = top_countries.values
+    # by directors
+    director = df_result[df_result['director'] != 'Unknown']['director'].str.split(
+        ', ').explode().value_counts().head(10)
+    content['director_label'] = director.index.to_list()
+    content['director_data'] = director.values
+    # by cast
+    cast = df_result[df_result['cast'] != 'Unknown']['cast'].str.split(
+        ', ').explode().value_counts().head(10)
+    content['cast_label'] = cast.index.to_list()
+    content['cast_data'] = cast.values
+    # by rating
+    rating = df_result['rating'].value_counts().head(10)
+    content['rate_label'] = rating.index.to_list()
+    content['rate_data'] = rating.values
+    # by genre
+    genres = df_result['listed_in'].str.split(', ').explode()
+    top_genres = genres.value_counts().head(10)
+    content['genre_label'] = top_genres.index.to_list()
+    content['genre_data'] = top_genres.values
+    return render(request, 'movies.html', content)
 
 
 @login_required
 def tv_shows(request):
-    return HttpResponse('TV Show')
+    content = {}
+    content['title'] = 'TV Show'
+    query = "SELECT * FROM public.my_data where type !='Movie';"
+    df_result = pd.read_sql(query, engine)
+    # by year
+    movie_groupby_year = df_result.groupby('year').size()
+    yearly_add_label = movie_groupby_year.index.to_list()
+    yearly_movie_sum = movie_groupby_year.values
+    content['yearly_label'] = yearly_add_label
+    content['yearly_data'] = yearly_movie_sum
+    # by countries
+    countries = df_result[df_result['country'] !=
+                          'Unknown']['country'].str.split(', ').explode()
+    top_countries = countries.value_counts().head(10)
+    content['countries_label'] = top_countries.index.to_list()
+    content['countries_data'] = top_countries.values
+    # by directors
+    director = df_result[df_result['director'] != 'Unknown']['director'].str.split(
+        ', ').explode().value_counts().head(10)
+    content['director_label'] = director.index.to_list()
+    content['director_data'] = director.values
+    # by cast
+    cast = df_result[df_result['cast'] != 'Unknown']['cast'].str.split(
+        ', ').explode().value_counts().head(10)
+    content['cast_label'] = cast.index.to_list()
+    content['cast_data'] = cast.values
+    # by rating
+    rating = df_result['rating'].value_counts().head(10)
+    content['rate_label'] = rating.index.to_list()
+    content['rate_data'] = rating.values
+    # by genre
+    genres = df_result['listed_in'].str.split(', ').explode()
+    top_genres = genres.value_counts().head(10)
+    content['genre_label'] = top_genres.index.to_list()
+    content['genre_data'] = top_genres.values
+    return render(request, 'tv_shows.html', content)
 
 
 def login(request):

@@ -1,0 +1,29 @@
+
+<canvas id="rating"></canvas>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const rating = document.getElementById('rating');
+
+  new Chart(rating, {
+    type: 'pie',
+    data: {
+      labels: [{% for i in rate_label %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      datasets: [{
+        data: [{% for i in rate_data %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        borderWidth: 1,
+        hoverOffset: 4
+      }]
+    },
+    options:{
+      plugins:{
+        title:{
+          display:true,
+          text:'{{title}} Rating',
+        }
+      },
+    }
+  });
+</script>

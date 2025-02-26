@@ -1,0 +1,41 @@
+<canvas id="director"></canvas>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const director = document.getElementById('director');
+  
+    new Chart(director, {
+      type: 'bar',
+  data: {
+    labels:[{% for i in director_label %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+    datasets:[
+    {
+        label: '{{title}}',
+        data: [{% for i in director_data %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        yAxisID : 'y'
+    },
+    ]
+  },
+  options: {
+    scales: {
+        y: {
+          beginAtZero: true
+        }
+      },
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: '{{title}} by Cast'
+      }
+    },
+  },
+    });
+  </script>

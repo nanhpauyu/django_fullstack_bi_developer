@@ -1,0 +1,29 @@
+
+<canvas id="genre"></canvas>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const genre = document.getElementById('genre');
+
+  new Chart(genre, {
+    type: 'pie',
+    data: {
+      labels: [{% for i in genre_label %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+      datasets: [{
+        data: [{% for i in genre_data %}"{{ i }}"{% if not forloop.last %}, {% endif %}{% endfor %}],
+        borderWidth: 1,
+        hoverOffset: 4
+      }]
+    },
+    options:{
+      plugins:{
+        title:{
+          display:true,
+          text:'{{title}} Genre',
+        }
+      },
+    }
+  });
+</script>
